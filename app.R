@@ -6,7 +6,24 @@
 #
 #    http://shiny.rstudio.com/
 #
+renv::init()
+# Gerekli tÃ¼m paketleri listele
+packages <- c(
+  "scatterplot3d", "shiny", "leaflet", "magrittr", "rworldmap",
+  "rgeos", "rgdal", "readxl", "ggplot2", "countrycode", "plotly",
+  "shinythemes", "dplyr", "ggpubr", "shinyWidgets", "kableExtra", "GGally"
+)
 
+# Kurulu olmayanlarÄ± bul ve kur
+installed <- installed.packages()
+for (pkg in packages) {
+  if (!(pkg %in% rownames(installed))) {
+    install.packages(pkg, dependencies = TRUE)
+  }
+}
+
+# TÃ¼m paketleri yÃ¼kle
+lapply(packages, library, character.only = TRUE)
 
 library(scatterplot3d) 
 library(shiny)
@@ -26,6 +43,7 @@ library(ggpubr)
 library(shinyWidgets)
 library(kableExtra)
 library(GGally)
+renv::snapshot() 
 X2020_Statistical_Annex_Table_4 <- read_excel("2020_Statistical_Annex_Table_4.xlsx", 
                                               col_types = c("numeric", "text", "numeric", 
                                                             "numeric", "numeric", "numeric", 
@@ -548,12 +566,8 @@ shinyApp(ui = ui, server = server)
 
 
 
-#Group name:Safaera
 #Batuhan SAYLAM 2429264
-#Zarrin Yusibova 2490043
-#Nebih şahin 2429298
-#Berkay türetken 2502433
-#Süleyman buğra gülsoy 2283109
+
 
 #References:
 #Data Source: https://hdr.undp.org/gender-development-index#/indicies/GDI
