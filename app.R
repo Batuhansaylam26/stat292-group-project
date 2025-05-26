@@ -13,12 +13,7 @@ packages <- c(
   "shinythemes", "dplyr", "ggpubr", "shinyWidgets", "kableExtra", "GGally"
 )
 
-#installed <- installed.packages()
-#for (pkg in packages) {
-#  if (!(pkg %in% rownames(installed))) {
-#   install.packages(pkg, dependencies = TRUE)
-#  }
-#}
+
 
 #lapply(packages, library, character.only = TRUE)
 
